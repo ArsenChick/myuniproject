@@ -9,9 +9,7 @@ int main()
     printf("Hello World!\n");
 
     double a, b, c, x1, x2;
-    a = 1;
-    b = 2;
-    c = 1;
+    scanf("%lf%lf%lf", &a, &b, &c);
     square(a, b, c, &x1, &x2);
 
     return myfunc(2);
