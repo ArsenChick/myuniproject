@@ -7,8 +7,12 @@
 int main()
 {
     printf("Hello World!\n");
+
     double a, b, c, x1, x2;
-    scanf("%lf%lf%lf", &a, &b, &c);
+    a = 1;
+    b = 2;
+    c = 1;
     square(a, b, c, &x1, &x2);
+
     return myfunc(2);
 }
