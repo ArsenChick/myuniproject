@@ -10,7 +10,8 @@ int main()
 
     double a, b, c, x1, x2;
     scanf("%lf%lf%lf", &a, &b, &c);
-    square(a, b, c, &x1, &x2);
+    printf("%d\n", square(a, b, c, &x1, &x2));
+    printf("%lf %lf\n", x1, x2);
 
     return myfunc(2);
 }
