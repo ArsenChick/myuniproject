@@ -1,5 +1,6 @@
 #include "square.h"
 #include <math.h>
+#include <stdio.h>
 
 int square(double a, double b, double c) {
 
