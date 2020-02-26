@@ -10,20 +10,17 @@ int square(double a, double b, double c) {
     if (d > 0) {
         x1 = (-b + sqrt(d))/(2 * a);
         x2 = (-b - sqrt(d))/(2 * a);
-        printf("The equation has two roots\n"
-               "%lf %lf\n", x1, x2);
+        printf("%lf %lf\n", x1, x2);
         return 2;
     }
 
     if (d == 0.0) {
         x1 = (-b)/(2 * a);
-        printf("The equation has one root\n"
-               "%lf\n", x1);
+        printf("%lf\n", x1);
         return 1;
     }
 
     if (d < 0) {
-        printf("The equation has no roots!");
         return 0;
     }
 
