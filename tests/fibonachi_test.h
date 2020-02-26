@@ -10,7 +10,7 @@ extern "C" {
 TEST(fibonachiTest, num0) {
     ASSERT_EQ(fibonachi(0), 0);
     ASSERT_EQ(fibonachi(1), 1);
-    ASSERT_EQ(fibonachi(2), 2);
+    ASSERT_EQ(fibonachi(2), 1);
 }
 
 TEST(fibonachiTest, greather2) {
