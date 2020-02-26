@@ -15,8 +15,8 @@ int square(double a, double b, double c) {
         return 2;
     }
 
-    if (d > 0) {
-        x1 = (-b + sqrt(d))/(2 * a);
+    if (d == 0.0) {
+        x1 = (-b)/(2 * a);
         printf("The equation has one root\n"
                "%lf\n", x1);
         return 1;
