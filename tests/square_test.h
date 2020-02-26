@@ -8,7 +8,7 @@ extern "C" {
 }
 
 TEST(squareTest, positive) {
-
+    ;
 }
 
 TEST(squareTest, eqzero) {
