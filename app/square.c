@@ -1,19 +1,31 @@
 #include "square.h"
 #include <math.h>
 
-int square(double a, double b, double c,
-           double *x1, double *x2) {
+int square(double a, double b, double c) {
 
+    double x1, x2;
     double d = b * b - 4 * a * c;
 
-    if (d >= 0) {
-        *x1 = (-b + sqrt(d))/(2 * a);
-        *x2 = (-b - sqrt(d))/(2 * a);
+    if (d > 0) {
+        x1 = (-b + sqrt(d))/(2 * a);
+        x2 = (-b - sqrt(d))/(2 * a);
+        printf("The equation has two roots\n"
+               "%lf %lf\n", x1, x2);
+        return 2;
+    }
+
+    if (d > 0) {
+        x1 = (-b + sqrt(d))/(2 * a);
+        printf("The equation has one root\n"
+               "%lf\n", x1);
+        return 1;
     }
 
     if (d < 0) {
-        return -1;
+        printf("The equation has no roots!");
+        return 0;
     }
 
-    return 0;
+    return -1;
+
 }

@@ -8,9 +8,7 @@ int main()
 {
     printf("Hello World!\n");
 
-    double x1, x2;
-    printf("%d\n", square(1, 2, 1, &x1, &x2));
-    printf("%lf %lf\n", x1, x2);
+    printf("%d\n", square(1, 2, 1));
 
     return myfunc(2);
 }
