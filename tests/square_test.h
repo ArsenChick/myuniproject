@@ -4,41 +4,37 @@
 #include <gtest/gtest.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <cstdio>
 
 extern "C" {
 #include "square.h"
 }
 
 TEST(squareTest, positive) {
+    int stdout_bk;
 
-    /* Настройка чтения выходного потока */
-    int outFd = open("temp/test1", O_WRONLY | O_CREAT);
-    int oldOutput = dup(1);
-    dup2(outFd, 1);
+    stdout_bk = dup(fileno(stdout));
 
-    /* Запуск функции */
+    int pipefd[2];
+    pipe2(pipefd, 0);
+
+    dup2(pipefd[1], fileno(stdout));
+
     ASSERT_EQ(square(1, 5, 6), 2);
+    ASSERT_EQ(square(1, 2, 1), 1);
+    ASSERT_EQ(square(1, 4, 5), 0);
+    fflush(stdout);
+    close(pipefd[1]);
 
-    /* Закрытие файла */
-    close(outFd);
-    dup2(oldOutput, 1);
+    dup2(stdout_bk, fileno(stdout));
 
-    /* Считывание корней */
-    double x1, x2;
-    FILE *f;
-    if ((f = fopen("temp/test1", "r")) == NULL)
-        FAIL();
-    fscanf(f, "%lf %lf", &x1, &x2);
-    fclose(f);
+    char buf[512]; double x1, x2, x3;
+    read(pipefd[0], buf, 512);
+    sscanf(buf, "%lf %lf %lf", &x1, &x2, &x3);
 
-    /* Проверка корней */
     ASSERT_DOUBLE_EQ(x1, -2.0);
     ASSERT_DOUBLE_EQ(x2, -3.0);
+
+    ASSERT_DOUBLE_EQ(x3, -1.0);
 }
 
 #endif // SQUARE_TEST_H
