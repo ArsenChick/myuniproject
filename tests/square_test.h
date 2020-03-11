@@ -2,7 +2,11 @@
 #define SQUARE_TEST_H
 
 #include <gtest/gtest.h>
-#include <io.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <cstdio>
 
 extern "C" {
@@ -11,28 +15,25 @@ extern "C" {
 
 TEST(squareTest, positive) {
     /* Настройка чтения выходного потока */
-    int outFd = open(testOutputFile, O_RDWR | O_CREAT );
-    int oldOutput = dup(stdout);
-    dup2(outFd, stdout);
+    int outFd = open("temp/testOutputFile", O_RDWR | O_CREAT );
+    int oldOutput = dup(1);
+    dup2(outFd, 1);
 
     /* Запуск функции */
     ASSERT_EQ(square(1, 5, 6), 2);
-    /* Проверка корней */
+    /* Считывание корней */
     double x1, x2;
-    fscanf(testOutputFile, "%lf %lf", &x1, &x2);
-    ASSERT_EQ(x1, -2.0);
-    ASSERT_EQ(x2, -3.0);
+    char *buf = (char *)malloc(sizeof(char) * 512);
+    read(outFd, buf, 512);
+    sscanf(buf, "%lf %lf", &x1, &x2);
+    free(buf);
+    /* Проверка корней */
+    ASSERT_DOUBLE_EQ(x1, -2.0);
+    ASSERT_DOUBLE_EQ(x2, -3.0);
 
     /* Закрытие файла */
-
-}
-
-TEST(squareTest, eqzero) {
-
-}
-
-TEST(squareTest, negative) {
-
+    close(outFd);
+    dup2(oldOutput, 1);
 }
 
 #endif // SQUARE_TEST_H
