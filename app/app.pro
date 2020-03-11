@@ -11,7 +11,7 @@ HEADERS += \
     myfunc.h \
     square.h
 
-QMAKE_CFLAGS += -Wall -Werror
+QMAKE_CFLAGS += -Wall -Wextra
 
 # gcov
 QMAKE_CFLAGS += -fprofile-arcs -ftest-coverage
