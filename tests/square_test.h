@@ -15,7 +15,7 @@ extern "C" {
 
 TEST(squareTest, positive) {
     /* Настройка чтения выходного потока */
-    int outFd = open("temp/testOutputFile", O_RDWR | O_CREAT );
+    int outFd = open("temp/testOutputFile", O_WRONLY | O_CREAT );
     int oldOutput = dup(1);
     dup2(outFd, 1);
 
