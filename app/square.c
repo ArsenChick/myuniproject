@@ -10,13 +10,13 @@ int square(double a, double b, double c) {
     if (d > 0) {
         x1 = (-b + sqrt(d))/(2 * a);
         x2 = (-b - sqrt(d))/(2 * a);
-        printf("%lf %lf\n", x1, x2);
+        printf("%.4lf %.4lf\n", x1, x2);
         return 2;
     }
 
     if (d == 0.0) {
         x1 = (-b)/(2 * a);
-        printf("%lf\n", x1);
+        printf("%.4lf\n", x1);
         return 1;
     }
 
