@@ -2,21 +2,19 @@
 #include <math.h>
 #include <stdio.h>
 
-int square(double a, double b, double c) {
+int square(double a, double b, double c, double *x1, double *x2) {
 
-    double x1, x2;
     double d = b * b - 4 * a * c;
 
     if (d > 0) {
-        x1 = (-b + sqrt(d))/(2 * a);
-        x2 = (-b - sqrt(d))/(2 * a);
-        printf("%.4lf %.4lf\n", x1, x2);
+        *x1 = (-b + sqrt(d))/(2 * a);
+        *x2 = (-b - sqrt(d))/(2 * a);
         return 2;
     }
 
     if (d == 0.0) {
-        x1 = (-b)/(2 * a);
-        printf("%.4lf\n", x1);
+        *x1 = (-b)/(2 * a);
+        *x2 = *x1;
         return 1;
     }
 
