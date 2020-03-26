@@ -2,7 +2,6 @@
 #define SQUARE_TEST_H
 
 #include <gtest/gtest.h>
-#include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
 
@@ -37,13 +36,31 @@ TEST(squareTest, correctNeg) {
     ASSERT_DOUBLE_EQ(x2, 0.0);
 }
 
-TEST(squareTest, correctPosN) {
+TEST(squareTest, correctPos2) {
     double x1 = 0.0;
     double x2 = 0.0;
 
     ASSERT_EQ(square(-2, 5, 7, &x1, &x2), 2);
     ASSERT_DOUBLE_EQ(x1, -1.0);
     ASSERT_DOUBLE_EQ(x2, 3.5);
+}
+
+TEST(squareTest, negativeSol) {
+    double x1 = 0.0;
+    double x2 = 0.0;
+
+    ASSERT_EQ(square(0, 4, 4, &x1, &x2), -1);
+    ASSERT_DOUBLE_EQ(x1, 0.0);
+    ASSERT_DOUBLE_EQ(x2, 0.0);
+}
+
+TEST(squareTest, negativeUnsol) {
+    double x1 = 0.0;
+    double x2 = 0.0;
+
+    ASSERT_EQ(square(0, 0, 0, &x1, &x2), -1);
+    ASSERT_DOUBLE_EQ(x1, 0.0);
+    ASSERT_DOUBLE_EQ(x2, 0.0);
 }
 
 #endif // SQUARE_TEST_H
