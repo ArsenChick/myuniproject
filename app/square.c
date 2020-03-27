@@ -4,6 +4,11 @@
 
 int square(double a, double b, double c, double *x1, double *x2) {
 
+    if (a == 0) {
+        fprintf(stderr, "Passed arguments don't make a square equation!\n");
+        return -1;
+    }
+
     double d = b * b - 4 * a * c;
 
     if (d > 0) {
@@ -22,6 +27,6 @@ int square(double a, double b, double c, double *x1, double *x2) {
         return 0;
     }
 
-    return -1;
+    return -2;
 
 }
